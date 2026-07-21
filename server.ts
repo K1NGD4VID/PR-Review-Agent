@@ -13,7 +13,7 @@ dotenv.config();
 
 const app = express();
 app.set('trust proxy', true);
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 app.use(express.json());
 
@@ -823,15 +823,15 @@ app.post('/api/repos/:id/sync', requireAuth, async (req: any, res) => {
         };
         db.addReview(finalReview);
 
-        notifyPRAuthor(prRecord.author, prRecord.id, repo.id, 'review_complete', 'AI Review Complete', `Pull Request #${prRecord.number} ("${prRecord.title}") has been processed by the PR Review Agent with score ${finalReview.score}/100.`);
+        notifyPRAuthor(prRecord.author, prRecord.id, repo.id, 'review_complete', 'AI Review Complete', `Pull Request #${prRecord.number} ("${prRecord.title}") has been processed by the MergeKeeper with score ${finalReview.score}/100.`);
 
         db.addChatMessage({
           id: `msg_auto_${Date.now()}`,
           prId: prRecord.id,
           sender: 'agent',
-          senderName: 'PR Review Agent',
+          senderName: 'MergeKeeper',
           senderAvatar: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&h=150&q=80',
-          message: `🤖 **PR Review Agent Ingestion Complete!**
+          message: `🤖 **MergeKeeper Ingestion Complete!**
 Hello @${prRecord.author}, I have compiled the analysis for Pull Request #${prRecord.number}.
 
 - **Quality Score**: ${finalReview.score}/100
@@ -1010,7 +1010,7 @@ app.post('/api/prs/:id/action', requireAuth, async (req: any, res) => {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              commit_title: note || `Autonomous Merge: Pull Request #${pr.number} by PR Review Agent`,
+              commit_title: note || `Autonomous Merge: Pull Request #${pr.number} by MergeKeeper`,
               merge_method: 'merge'
             })
           });
@@ -1063,7 +1063,7 @@ app.post('/api/prs/:id/action', requireAuth, async (req: any, res) => {
         id: `msg_sys_${Date.now()}`,
         prId: id,
         sender: 'agent',
-        senderName: 'PR Review Agent',
+        senderName: 'MergeKeeper',
         senderAvatar: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&h=150&q=80',
         message: `🏁 **PR Merged Successfully!** Excellent contribution, **@${pr.author}**! Awarded **+${award} points** (Streak: Multiplier active!). See you on the leaderboard.${token ? ' (Pushed to Github Main Branch)' : ''}`,
         timestamp: new Date().toISOString(),
@@ -1158,7 +1158,7 @@ app.post('/api/prs/:id/chat', requireAuth, async (req: any, res) => {
               httpOptions: { headers: { 'User-Agent': 'aistudio-build' } }
             });
 
-            const prompt = `You are the autonomous PR Review Agent assistant.
+            const prompt = `You are the autonomous MergeKeeper assistant.
 A contributor/maintainer is chatting with you inside the Pull Request channel.
 Review Details:
 - Score: ${reviewData?.score ?? 'N/A'}
@@ -1191,13 +1191,13 @@ Keep it short, clear, and action-oriented. Suggest exact adjustments to resolve 
             id: `msg_ai_${Date.now()}`,
             prId,
             sender: 'agent',
-            senderName: 'PR Review Agent',
+            senderName: 'MergeKeeper',
             senderAvatar: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&h=150&q=80',
             message: agentReply,
             timestamp: new Date().toISOString()
           });
 
-          notifyPRAuthor(pr.author, prId, pr.repoId, 'new_comment', 'AI Assistant Response', `PR Review Agent replied: "${agentReply.substring(0, 50)}..."`);
+          notifyPRAuthor(pr.author, prId, pr.repoId, 'new_comment', 'AI Assistant Response', `MergeKeeper replied: "${agentReply.substring(0, 50)}..."`);
 
         } catch (aiErr) {
           console.error("Agent chat reply generation error:", aiErr);
@@ -1540,7 +1540,7 @@ app.post('/api/webhooks/github', async (req, res) => {
         };
         db.addReview(finalReview);
 
-        const greetingMsg = `🤖 **PR Review Agent Ingestion Complete!**
+        const greetingMsg = `🤖 **MergeKeeper Ingestion Complete!**
 Hello @${newPr.author}, I have compiled the analysis for Pull Request #${newPr.number}.
 
 - **Quality Score**: ${finalReview.score}/100
@@ -1553,7 +1553,7 @@ I have written inline findings directly. You can inspect my comments or chat wit
           id: `msg_auto_${Date.now()}`,
           prId: tempPrId,
           sender: 'agent',
-          senderName: 'PR Review Agent',
+          senderName: 'MergeKeeper',
           senderAvatar: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&h=150&q=80',
           message: greetingMsg,
           timestamp: new Date().toISOString()
@@ -1568,7 +1568,7 @@ I have written inline findings directly. You can inspect my comments or chat wit
             id: `msg_merge_${Date.now()}`,
             prId: tempPrId,
             sender: 'agent',
-            senderName: 'PR Review Agent',
+            senderName: 'MergeKeeper',
             senderAvatar: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&h=150&q=80',
             message: `🏁 **Auto-Merge Succeeded!** No human override triggers detected. Point multiplier credited **+${db.getSettings().pointsOnMerge} points** to @${newPr.author}.`,
             timestamp: new Date().toISOString(),
@@ -1809,7 +1809,7 @@ async function startServer() {
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`PR Review Agent server running on http://0.0.0.0:${PORT}`);
+    console.log(`MergeKeeper server running on http://0.0.0.0:${PORT}`);
   });
 }
 

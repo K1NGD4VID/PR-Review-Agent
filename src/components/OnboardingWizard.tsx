@@ -393,7 +393,7 @@ export function OnboardingWizard({ user, onComplete }: OnboardingWizardProps) {
                   <span className="text-[10px] uppercase font-mono font-bold text-indigo-400 tracking-wider">STEP 2</span>
                   <h1 className="text-xl font-bold text-white mt-1">Install the GitHub App</h1>
                   <p className="text-xs text-white/50 mt-1">
-                    To automate PR reviews, you must install the PR Review Agent GitHub App on your account or organization.
+                    To automate PR reviews, you must install the MergeKeeper GitHub App on your account or organization.
                   </p>
                 </div>
 
@@ -491,7 +491,7 @@ export function OnboardingWizard({ user, onComplete }: OnboardingWizardProps) {
                   <span className="text-[10px] uppercase font-mono font-bold text-indigo-400 tracking-wider">STEP 4</span>
                   <h1 className="text-xl font-bold text-white mt-1">Select Repositories</h1>
                   <p className="text-xs text-white/50 mt-1">
-                    Import repositories where you want to deploy the AI PR Review Agent.
+                    Import repositories where you want to deploy the AI MergeKeeper.
                   </p>
                 </div>
 

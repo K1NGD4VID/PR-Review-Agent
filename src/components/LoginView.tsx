@@ -117,7 +117,7 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
             <Shield className="w-8 h-8 text-indigo-400" />
           </div>
           <h1 className="text-2xl font-semibold text-white tracking-tight font-serif italic flex items-center justify-center gap-2">
-            PR Review Agent
+            MergeKeeper
           </h1>
           <p className="text-xs text-white/40 mt-1 max-w-xs mx-auto font-sans">
             The autonomous maintainer pipeline reviewing and merging code with AI decision frameworks.
@@ -163,27 +163,6 @@ export function LoginView({ onLoginSuccess }: LoginViewProps) {
                 </>
               )}
             </button>
-
-            {/* Dynamic Setup Guide */}
-            <div className="mt-3 bg-white/[0.02] border border-white/5 rounded-lg p-3 text-[10px] text-white/40 space-y-1.5 font-mono">
-              <p className="font-sans font-bold text-white/60 mb-1 flex items-center gap-1.5">
-                <Shield className="w-3.5 h-3.5 text-indigo-400" />
-                GitHub OAuth Configuration
-              </p>
-              <div className="flex flex-col gap-1 text-[9px] break-all">
-                <div className="bg-black/20 p-1.5 rounded flex flex-col gap-0.5">
-                  <span className="text-white/30">Homepage URL:</span>
-                  <span className="text-white/75 select-all font-semibold">{window.location.origin}</span>
-                </div>
-                <div className="bg-black/20 p-1.5 rounded flex flex-col gap-0.5">
-                  <span className="text-white/30">Authorization callback URL:</span>
-                  <span className="text-white/75 select-all font-semibold">{window.location.origin}/api/auth/github/callback</span>
-                </div>
-              </div>
-              <p className="text-[9px] font-sans text-white/30 italic">
-                * Ensure you update your GitHub App settings with these exact values.
-              </p>
-            </div>
 
             <div className="relative flex items-center justify-center my-6">
               <div className="absolute inset-0 flex items-center">

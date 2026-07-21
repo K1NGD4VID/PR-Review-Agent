@@ -200,7 +200,7 @@ export function AdminDashboard({ onSelectPR, prListRefreshTrigger, user }: Admin
   };
 
   const handleDeleteRepo = async (id: string) => {
-    if (!confirm("Are you sure you want to disconnect this repository from the AI PR Review Agent?")) return;
+    if (!confirm("Are you sure you want to disconnect this repository from the AI MergeKeeper?")) return;
     try {
       const res = await fetch(`/api/repos/${id}`, { method: 'DELETE' });
       if (res.ok) {
@@ -1141,7 +1141,7 @@ export function AdminDashboard({ onSelectPR, prListRefreshTrigger, user }: Admin
                   <Sparkles className="w-5 h-5 text-indigo-400 animate-pulse" />
                 </div>
                 <div>
-                  <h3 className="font-serif italic text-lg text-white">PR Review Agent Setup</h3>
+                  <h3 className="font-serif italic text-lg text-white">MergeKeeper Setup</h3>
                   <p className="text-xs text-white/40">Step {wizardStep} of 5</p>
                 </div>
               </div>
@@ -1179,7 +1179,7 @@ export function AdminDashboard({ onSelectPR, prListRefreshTrigger, user }: Admin
                   <div className="text-center space-y-2">
                     <h4 className="text-lg font-bold text-white">Connect GitHub Workspace</h4>
                     <p className="text-xs text-white/50 max-w-md mx-auto leading-relaxed">
-                      Authorize the PR Review Agent with read and write access to listen for commit events and synchronize PR codebases.
+                      Authorize the MergeKeeper with read and write access to listen for commit events and synchronize PR codebases.
                     </p>
                   </div>
 
@@ -1256,7 +1256,7 @@ export function AdminDashboard({ onSelectPR, prListRefreshTrigger, user }: Admin
                 <div className="space-y-4">
                   <div className="space-y-1">
                     <h4 className="text-base font-bold text-white">Select Repositories to Monitor</h4>
-                    <p className="text-xs text-white/40">Choose which repositories you want the PR Review Agent to evaluate and auto-manage.</p>
+                    <p className="text-xs text-white/40">Choose which repositories you want the MergeKeeper to evaluate and auto-manage.</p>
                   </div>
 
                   {githubReposLoading ? (
@@ -1433,7 +1433,7 @@ export function AdminDashboard({ onSelectPR, prListRefreshTrigger, user }: Admin
                   <div className="space-y-2">
                     <h4 className="text-lg font-bold text-white">Setup Successfully Finished!</h4>
                     <p className="text-xs text-white/50 max-w-sm mx-auto leading-relaxed">
-                      The autonomous PR Review Agent is active. Webhooks have been successfully deployed and repository PR files sync completed!
+                      The autonomous MergeKeeper is active. Webhooks have been successfully deployed and repository PR files sync completed!
                     </p>
                   </div>
 

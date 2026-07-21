@@ -101,7 +101,7 @@ const DEFAULT_RULES: OverrideRule[] = [
 
 const DEFAULT_SETTINGS: SystemSettings = {
   aiModel: 'gemini-3.5-flash',
-  aiPromptTemplate: `You are the autonomous PR Review Agent. Analyze the PR details, files changed, and code diff below.
+  aiPromptTemplate: `You are the autonomous MergeKeeper. Analyze the PR details, files changed, and code diff below.
 Evaluate based on: Correctness, Security, Performance, Maintainability, and Test Coverage.
 
 Generate inline comments if issues are found, referencing files and lines.

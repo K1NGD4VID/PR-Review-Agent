@@ -137,7 +137,7 @@ export default function App() {
           </div>
           <div>
             <h1 className="text-sm font-semibold tracking-widest uppercase text-white/90 font-serif italic">
-              {isAdmin ? 'PR Review Agent' : 'Contributor Console'}
+              {isAdmin ? 'MergeKeeper' : 'Contributor Console'}
             </h1>
             <span className="text-[10px] uppercase font-bold text-white/40 tracking-wider block mt-1">
               {isAdmin ? 'Autonomous Maintainer SaaS' : 'Autonomous Developer Hub'}
@@ -271,7 +271,7 @@ export default function App() {
 
       {/* SaaS footer */}
       <footer className="border-t border-white/10 bg-[#050506] py-6 text-center text-xs text-white/30 mt-12">
-        <p>© 2026 PR Review Agent SaaS Platform. All AI code-review workers active.</p>
+        <p>© 2026 MergeKeeper SaaS Platform. All AI code-review workers active.</p>
       </footer>
     </div>
   );

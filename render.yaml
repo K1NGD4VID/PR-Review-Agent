@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: mergekeeper
+    runtime: node
+    plan: free
+    # vite/esbuild are devDependencies but required to build, so force-include them.
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GITHUB_CLIENT_ID
+        sync: false
+      - key: GITHUB_CLIENT_SECRET
+        sync: false
+      - key: APP_URL
+        sync: false
+    # NOTE: free tier has an ephemeral filesystem — db.json (users, sessions, PRs)
+    # resets on every redeploy and periodic restart. Fine for a demo only.

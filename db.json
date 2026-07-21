@@ -259,7 +259,7 @@
       "id": "msg_1",
       "prId": "pr_101",
       "sender": "agent",
-      "senderName": "PR Review Agent",
+      "senderName": "MergeKeeper",
       "senderAvatar": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&h=150&q=80",
       "message": "👋 Hello Alex! I have completed analyzing your PR changes. I found **1 critical issue** and **1 general suggestion** regarding your JWT authentication module. Because this touches sensitive paths, this PR has been flagged for human maintainer approval.",
       "timestamp": "2026-07-19T14:26:13.336Z",
@@ -369,7 +369,7 @@
     {
       "id": "aud_1",
       "action": "Repository Registered",
-      "details": "Connected node-microservices-core to PR Review Agent.",
+      "details": "Connected node-microservices-core to MergeKeeper.",
       "timestamp": "2026-06-20T14:26:13.336Z"
     },
     {
@@ -384,7 +384,7 @@
     "githubClientId": "Ov23lipShV5MS2ssiYCl",
     "githubClientSecret": "9bcce6589f2270da238ff9573246d6c89981665e",
     "aiModel": "gemini-3.5-flash",
-    "aiPromptTemplate": "You are the autonomous PR Review Agent. Analyze the PR details, files changed, and code diff below.\nEvaluate based on: Correctness, Security, Performance, Maintainability, and Test Coverage.\n\nGenerate inline comments if issues are found, referencing files and lines.\nProvide a final verdict: approve, request_changes, or flag (for critical/security escalations).\nSpecify a confidence score (0-100) and clear reasoning.",
+    "aiPromptTemplate": "You are the autonomous MergeKeeper. Analyze the PR details, files changed, and code diff below.\nEvaluate based on: Correctness, Security, Performance, Maintainability, and Test Coverage.\n\nGenerate inline comments if issues are found, referencing files and lines.\nProvide a final verdict: approve, request_changes, or flag (for critical/security escalations).\nSpecify a confidence score (0-100) and clear reasoning.",
     "reviewStrictness": "standard",
     "webhookSecret": "pr_agent_secret_secure_1337",
     "autoMergeDefault": true,
